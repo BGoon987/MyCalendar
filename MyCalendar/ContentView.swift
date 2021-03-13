@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var calendar = Calendar(identifier: .gregorian)
+    
     var body: some View {
+        
+        
+        
+        
         Text("Calendar View")
             .padding()
     }

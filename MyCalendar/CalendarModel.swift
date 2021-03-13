@@ -13,4 +13,10 @@ struct CalendarModel {
     let isSelected: Bool
     let customColor: Color
     
+    init(day: Date, isSelected: Bool, customColor: Color) {
+        self.day = day
+        self.isSelected = isSelected
+        self.customColor = customColor
+    }
+    
 }
