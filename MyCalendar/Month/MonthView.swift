@@ -11,16 +11,13 @@ struct MonthView: View {
     
     var monthWidth = UIScreen.main.bounds.width * 0.9
     
-    @State var dateModel = DateModel()
-    
-    
     
     var body: some View {
         
         VStack {
             HStack {
                 Button(action: {
-                    _ = dateModel.nextMonth()
+                    Date().year
                     
                     
                     
@@ -28,8 +25,11 @@ struct MonthView: View {
                     Image(systemName: "arrowtriangle.left.fill")
                 })
                 Spacer()
+                HStack {
+                    Text(Date().year.description)
+                    Text(Date().month.description)
+                }
                 
-                Text(dateModel.monthStyle)
                 
                 Spacer()
                 

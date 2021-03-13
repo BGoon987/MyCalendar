@@ -6,29 +6,22 @@
 //
 
 import Foundation
-import SwiftUI
 
-struct DateModel {
-    
-    
-    @State var selectedDate = Date()
-    var dateComponents = DateComponents()
-    let monthToAdd = 1
-    let dayToAdd = 1
-    let yearToAdd = 1
-    
-    
-    var monthStyle: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM"
-        return formatter.string(from: selectedDate)
+extension Date {
+    public var year: Int {
+        return Calendar.current.component(.year, from: self)
+        
+    }
+    public var month: Int {
+        return Calendar.current.component(.month, from: self)
+    }
+    public var day: Int {
+        return Calendar.current.component(.day, from: self)
     }
     
-    mutating func nextMonth() -> Date {
-        dateComponents.month = monthToAdd
-        return Calendar.current.date(byAdding: dateComponents, to: selectedDate)!
+    public var monthName: String {
+        let nameFormatter = DateFormatter()
+        nameFormatter.dateFormat = "MMMM"
+        return nameFormatter.string(from: self)
     }
-    
 }
-
-
