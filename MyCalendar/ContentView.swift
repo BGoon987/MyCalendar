@@ -13,11 +13,13 @@ struct ContentView: View {
     
     var body: some View {
         
-        
-        
-        
-        Text("Calendar View")
-            .padding()
+        VStack(spacing: 10) {
+            
+            MonthView()
+            DaysView()
+            
+        }
+            
     }
 }
 

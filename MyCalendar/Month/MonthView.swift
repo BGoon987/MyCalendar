@@ -27,8 +27,6 @@ struct MonthView: View {
                         presentMonth = 12
                     }
                     
-                    
-                    
                 }, label: {
                     Image(systemName: "arrowtriangle.left.fill")
                         .font(.largeTitle)
