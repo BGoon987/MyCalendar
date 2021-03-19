@@ -14,6 +14,7 @@ struct DaysView: View {
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
     ]
     var daysWidth = MonthView().monthWidth
+    var dayName = Date().dayName
     
     var body: some View {
         VStack {
@@ -27,15 +28,17 @@ struct DaysView: View {
                 }
                 .frame(width: daysWidth)
             
-            
-            ForEach(0..<5) { _ in
-                HStack {
-                    ForEach(0..<7) { _ in
-                        DayButton()
-                            .aspectRatio(1, contentMode: .fit)
+            GeometryReader { geometry in
+                ForEach(0..<5) { _ in
+                    HStack {
+                        ForEach(0..<7) { _ in
+                            DayButton()
+                                .aspectRatio(1, contentMode: .fit)
+                        }
                     }
-                }
+                }.frame(width: self.daysWidth / 7, height: self.daysWidth / 7)
             }
+            
             
         }
         .frame(width: daysWidth)

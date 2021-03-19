@@ -21,6 +21,7 @@ public class DateHelper {
         dateComponents.month = monthToAdd
         return Calendar.current.date(byAdding: .month, value: monthToAdd ,to: baseDate)
     }
+    
 }
 
 extension Date {
@@ -38,6 +39,11 @@ extension Date {
     public var monthName: String {
         let nameFormatter = DateFormatter()
         nameFormatter.dateFormat = "MMMM"
+        return nameFormatter.string(from: self)
+    }
+    public var dayName: String {
+        let nameFormatter = DateFormatter()
+        nameFormatter.dateFormat = "eee"
         return nameFormatter.string(from: self)
     }
 }
