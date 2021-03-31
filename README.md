@@ -11,3 +11,7 @@ Making Calendar without using library
 
 2021/03/20
 - Ongoing
+
+2021/03/31
+- Making new DateModel using DateFormatter and modify for MyCalendar
+- reference: [mecid's Gist](#https://gist.github.com/mecid/f8859ea4bdbd02cf5d440d58e936faec), ETC....
