@@ -2,68 +2,77 @@
 //  MonthView.swift
 //  MyCalendar
 //
-//  Created by 裴良洙 on 2021/03/13.
+//  Created by 裴良洙 on 2021/03/31.
 //
 
 import SwiftUI
 
-struct MonthView: View {
+struct MonthView<DateView>: View where DateView: View {
+    @Environment(\.calendar) var calendar
     
-    var monthWidth = UIScreen.main.bounds.width * 0.9
-    @State var presentMonth = Date().month
-    @State var presentYear = Date().year
+    let month: Date
+    let content: (Date) -> DateView
+    
+    init(month: Date, @ViewBuilder content: @escaping (Date) -> DateView) {
+        self.month = month
+        self.content = content
+    }
+    
+    private var weeks: [Date] {
+        guard
+            let monthInterval = calendar.dateInterval(of: .month, for: month)
+        else { return [] }
+        return calendar.generateDates(inside: monthInterval, matching: DateComponents(hour: 0, minute: 0, second: 0, weekday: calendar.firstWeekday))
+    }
+    
+    private var yearHeader: some View {
+        _ = calendar.component(.month, from: month)
+        let formatter = DateFormatter.year
+        return Text(formatter.string(from: month))
+            .font(.title)
+            .padding()
+    }
+    private var monthHeader: some View {
+        _ = calendar.component(.month, from: month)
+        let formatter = DateFormatter.month
+        return Text(formatter.string(from: month))
+            .font(.title)
+            .padding()
+    }
+    
     
     var body: some View {
-        
         VStack {
             HStack {
+                
                 Button(action: {
-//                    presentMonth = DateHelper.dateAfter(month: -1, from: Date())!.month
-                    
-                    if presentMonth > 1 {
-                        presentMonth = self.presentMonth - 1
-                    } else {
-                        presentYear = self.presentYear - 1
-                        presentMonth = 12
-                    }
                     
                 }, label: {
                     Image(systemName: "arrowtriangle.left.fill")
-                        .font(.largeTitle)
+                        .font(.title2)
                 })
-                Spacer()
-                HStack {
-                    Text(presentYear.description)
-                        .font(.largeTitle)
-                    Text("/")
-                        .font(.largeTitle)
-                    Text(presentMonth.description)
-                        .font(.largeTitle)
-                }
-                Spacer()
                 
+                HStack(alignment: .bottom) {
+                    yearHeader
+                    monthHeader
+                }
+    
                 Button(action: {
-                    if presentMonth <= 11 {
-                        presentMonth = self.presentMonth + 1
-                    } else {
-                        presentYear = self.presentYear + 1
-                        presentMonth = 1
-                    }
                     
                 }, label: {
                     Image(systemName: "arrowtriangle.right.fill")
-                        .font(.largeTitle)
+                        .font(.title2)
                 })
                 
             }
-            .frame(width: monthWidth)
+            
+            
+            ForEach(weeks, id: \.self) { week in
+                WeekView(week: week, content : self.content)
+            }
+            
         }
         
     }
 }
 
-struct MonthView_Previews: PreviewProvider {
-    static var previews: some View {
-        MonthView()
-    }
-}

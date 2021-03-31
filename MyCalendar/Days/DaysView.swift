@@ -13,7 +13,7 @@ struct DaysView: View {
     var dayString:[String] = [
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
     ]
-    var daysWidth = MonthView().monthWidth
+    var daysWidth = MonthView1().monthWidth
     var dayName = Date().dayName
     
     var body: some View {
