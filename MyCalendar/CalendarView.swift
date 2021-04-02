@@ -13,7 +13,6 @@ struct CalendarView<DateView>: View where DateView: View {
     let interval: DateInterval
     let content: (Date) -> DateView
     
-    @State private var currentMonth = Date().monthNumber
     
     
     init(interval: DateInterval, @ViewBuilder content: @escaping (Date) -> DateView) {
@@ -28,11 +27,12 @@ struct CalendarView<DateView>: View where DateView: View {
     
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
                 ForEach(months, id: \.self) { month in
                     MonthView(month: month, content: self.content)
                 }
+                .padding()
                 
             }
         }
