@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
     
     let interval: DateInterval
     let content: (Date) -> DateView
+    
+    @State private var currentMonth = Date().monthNumber
+    
     
     init(interval: DateInterval, @ViewBuilder content: @escaping (Date) -> DateView) {
         self.interval = interval

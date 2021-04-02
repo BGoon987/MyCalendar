@@ -32,7 +32,7 @@ struct MonthView<DateView>: View where DateView: View {
             .font(.title)
             .padding()
     }
-    private var monthHeader: some View {
+    var monthHeader: some View {
         _ = calendar.component(.month, from: month)
         let formatter = DateFormatter.month
         return Text(formatter.string(from: month))
