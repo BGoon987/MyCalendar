@@ -42,37 +42,17 @@ struct MonthView<DateView>: View where DateView: View {
     
     
     
+    
     var body: some View {
-        
-            VStack {
-                HStack {
-                    
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "arrowtriangle.left.fill")
-                            .font(.title2)
-                    })
-                    
-                    HStack(alignment: .bottom) {
-                        yearHeader
-                        monthHeader
-                    }
-        
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "arrowtriangle.right.fill")
-                            .font(.title2)
-                    })
-                    
-                }
-                
-                
-                ForEach(weeks, id: \.self) { week in                    
-                        WeekView(week: week, content : self.content)
-                }
+        VStack {
+            HStack(alignment: .bottom) {
+                yearHeader
+                monthHeader
+            }
             
+            ForEach(weeks, id: \.self) { week in
+                WeekView(week: week, content : self.content)
+            }
         }
     }
 }
