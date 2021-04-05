@@ -22,3 +22,10 @@ Making Calendar without using library
   (to compare Int(MonthView().monthHeader) and Int(Date().monthNumber)) <br>
 - but cannot add Int data to Int(MonthView().monthHeader)
 - I'll try using GeometryReader 
+
+2021/04/05
+- Complete: Apply Monthly calendar movement through button action <br>
+  (Using GeometryReader & Padding. lead and trail padding have Equal width)
+  - Delete ScrollView <br>
+  (what is required for the calendar is a fixed move that is limited to a month to month, not Scroll Gesture)
+- assignment: Button's Layout (to be located on either side of MonthView's Header), ETC...
