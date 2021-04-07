@@ -20,7 +20,7 @@ struct ContentView: View {
             Text("30")
                 .hidden()
                 .padding(8)
-                .background(Color.blue)
+                .background(Color.orange)
                 .clipShape(Circle())
                 .padding(.vertical, 4)
                 .overlay(

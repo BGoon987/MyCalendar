@@ -21,7 +21,7 @@ struct WeekView<DateView>: View where DateView: View {
     private var days: [Date] {
         guard
             let weekInterval = calendar.dateInterval(of: .weekOfYear, for: week)
-        else {return [] }
+        else { return [] }
         return calendar.generateDates(
             inside: weekInterval,
             matching: DateComponents(hour: 0, minute: 0, second: 0)

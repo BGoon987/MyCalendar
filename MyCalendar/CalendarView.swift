@@ -48,24 +48,24 @@ struct CalendarView<DateView>: View where DateView: View {
                 Button(action: {
                     self.addPadding -= leadPadding + monthViewSize.width
                 }, label: {
-                    Text("Previous")
+                    Image(systemName: "arrow.backward")
                 })
-                Spacer()
-                Button(action: {
-                    if leadPadding == trailPadding {
-                        print("lead = trail")
-                    } else {
-                        print("lead /= trail")
-                    }
-                    
-                }, label: {
-                    Text("Test")
-                })
+//                Spacer()
+//                Button(action: {
+//                    if leadPadding == trailPadding {
+//                        print("lead = trail")
+//                    } else {
+//                        print("lead /= trail")
+//                    }
+//
+//                }, label: {
+//                    Text("Test")
+//                })
                 Spacer()
                 Button(action: {
                     self.addPadding += leadPadding + monthViewSize.width
                 }, label: {
-                    Text("Prior")
+                    Image(systemName: "arrow.right")
                 })
             }
             .frame(width: self.monthViewSize.width * 0.9)
