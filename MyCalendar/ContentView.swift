@@ -15,6 +15,9 @@ struct ContentView: View {
         calendar.dateInterval(of: .year, for: Date())!
     }
     
+    @State private var isPresented = false
+    @State private var haveIndex = false
+    
     var body: some View {
         CalendarView(interval: year) { date in
             Text("30")
@@ -22,10 +25,18 @@ struct ContentView: View {
                 .padding(8)
                 .background(Color.orange)
                 .clipShape(Circle())
+                
+                .alert(isPresented: $isPresented, content: {
+                    // Add View
+                    Alert(title: Text("Test"))
+                })
                 .padding(.vertical, 4)
                 .overlay(
                     Text(String(self.calendar.component(.day, from: date)))
                 )
+                .onTapGesture {
+                    isPresented.toggle()
+                }
             
         }
     }

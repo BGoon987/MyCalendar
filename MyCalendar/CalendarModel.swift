@@ -11,9 +11,9 @@ import SwiftUI
 struct CalendarModel {
     let day: Date
     let isSelected: Bool
-    let customColor: Color
+    let customColor: String
     
-    init(day: Date, isSelected: Bool, customColor: Color) {
+    init(day: Date, isSelected: Bool, customColor: String) {
         self.day = day
         self.isSelected = isSelected
         self.customColor = customColor
