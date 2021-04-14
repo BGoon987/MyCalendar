@@ -15,30 +15,34 @@ struct ContentView: View {
         calendar.dateInterval(of: .year, for: Date())!
     }
     
-    @State private var isPresented = false
     @State private var haveIndex = false
     
     var body: some View {
-        CalendarView(interval: year) { date in
-            Text("30")
-                .hidden()
-                .padding(8)
-                .background(Color.orange)
-                .clipShape(Circle())
+        NavigationView {
+            CalendarView(interval: year) { date in
+                NavigationLink(
+                    destination: ListView(),
+                    label: {
+                        Text("30")
+                            .hidden()
+                            .padding(8)
+                            .background(Color.orange)
+                            .clipShape(Circle())
+                            
+
+                            .padding(.vertical, 4)
+                            .overlay(
+                                Text(String(self.calendar.component(.day, from: date)))
+                            )
+
+                    
+                    })
+                    .navigationBarHidden(true)
+            }
                 
-                .alert(isPresented: $isPresented, content: {
-                    // Add View
-                    Alert(title: Text("Test"))
-                })
-                .padding(.vertical, 4)
-                .overlay(
-                    Text(String(self.calendar.component(.day, from: date)))
-                )
-                .onTapGesture {
-                    isPresented.toggle()
-                }
             
         }
+        
     }
 }
 
