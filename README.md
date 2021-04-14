@@ -29,3 +29,10 @@ Making Calendar without using library
   - Delete ScrollView <br>
   (what is required for the calendar is a fixed move that is limited to a month to month, not Scroll Gesture)
 - assignment: Button's Layout (to be located on either side of MonthView's Header), ETC...
+
+2021/04/15
+- Add ListView <br>
+  (When user tap on a date, can move to the list of that date) <br>
+- assignment: DataModel and ListView modification / Making addListView  <br>
+  (Disply only the list for the date)
+
