@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListModel: Identifiable {
+struct ListModel: Identifiable {
     
     var id = UUID()
     

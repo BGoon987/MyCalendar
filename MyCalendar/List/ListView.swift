@@ -9,42 +9,51 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var listdataStore = listDataStore
+    @State var showAddView = false
     
     var body: some View {
-        
-        NavigationView {
-            List {
-                ForEach(listdataStore, id: \.id) { item in
-                    HStack {
-                        Text(item.time)
-                        Text(item.title)
+        ZStack {
+            NavigationView {
+                List {
+                    ForEach(listDataStore, id: \.id) { item in
+                        HStack {
+                            Text(item.time)
+                            Text(item.title)
+                        }
+                    }
+                    .onDelete(perform: delete)
+                    .onMove { (indexSet, index) in
+                        
+                        listDataStore.move(fromOffsets: indexSet, toOffset: index)
+                        
                     }
                 }
-                .onDelete(perform: delete)
-                .onMove { (indexSet, index) in
-                    self.listdataStore.move(fromOffsets: indexSet, toOffset: index)
-                }
-            }
-            .toolbar {
-                HStack {
-                    NavigationLink(
-                        destination: ListAddView(),
-                        label: {
+                .toolbar {
+                    HStack {
+                        Button(action: {
+                            showAddView.toggle()
+                        }, label: {
                             Text("Add")
                         })
-                    EditButton()
+                        EditButton()
+                    }
+                    
+                    
                 }
-                
+                .navigationTitle("Sample List")
                 
             }
-            .navigationTitle("Sample List")
-            
+            if showAddView {
+                ListAddView(showAddList: $showAddView)
+            }
         }
         
     }
     func delete(at offsets: IndexSet) {
+        
         listDataStore.remove(atOffsets: offsets)
+        
+        
     }
 }
 
