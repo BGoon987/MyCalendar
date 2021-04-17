@@ -36,3 +36,7 @@ Making Calendar without using library
 - assignment: DataModel and ListView modification / Making addListView  <br>
   (Disply only the list for the date)
 
+2021/04/18
+- Complete: Making AddListView <br>
+  (User can input Title and Time Data : Tap "Add" Button in ListView -> input title / time -> tap button of bottom -> append Data and return ListView)<br>
+- assignment: modify some Layout
