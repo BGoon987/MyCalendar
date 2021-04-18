@@ -39,19 +39,34 @@ struct ListAddView: View {
                 }, label: {
                     Text("\(date.hour) : \(date.minute)")
                         .font(.largeTitle)
+                        .foregroundColor(Color.white)
+                        
                 })
                 
-                Button(action: {
+                HStack {
+                    Button(action: {
+                        showAddList.toggle()
+                    }, label: {
+                        Image(systemName: "multiply.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.black)
+                    })
+                    Button(action: {
+                        
+                        saveList()
+                        showAddList.toggle()
+                        print(listDataStore.count)
+                    }, label: {
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.black)
+                    })
                     
-                    saveList()
-                    showAddList.toggle()
-                    print(listDataStore.count)
-                }, label: {
-                    Image(systemName: "checkmark.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.black)
-                })
+                }
+                
+                
                 
             }
             .textFieldStyle(RoundedBorderTextFieldStyle())

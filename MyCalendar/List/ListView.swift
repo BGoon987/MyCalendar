@@ -13,21 +13,30 @@ struct ListView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+            
                 List {
-                    ForEach(listDataStore, id: \.id) { item in
-                        HStack {
-                            Text(item.time)
-                            Text(item.title)
+                    Section(header: SectionHeader(sectionColor: Color.orange)) {
+                        ForEach(listDataStore, id: \.id) { item in
+                            if item.isClear == false {
+                                HStack {
+                                    Text(item.time)
+                                    Text(item.title)
+                                    Spacer()
+                                    Image(systemName : item.isClear ? "circle.fill" : "circle")
+                                }
+                            }
+                            
+                        }
+                        .onDelete(perform: delete)
+                        .onMove { (indexSet, index) in
+                            listDataStore.move(fromOffsets: indexSet, toOffset: index)
                         }
                     }
-                    .onDelete(perform: delete)
-                    .onMove { (indexSet, index) in
-                        
-                        listDataStore.move(fromOffsets: indexSet, toOffset: index)
-                        
-                    }
+                    .listStyle(GroupedListStyle())
+                    
+                    
                 }
+                .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     HStack {
                         Button(action: {
@@ -37,17 +46,12 @@ struct ListView: View {
                         })
                         EditButton()
                     }
-                    
-                    
                 }
-                .navigationTitle("Sample List")
-                
-            }
+            
             if showAddView {
                 ListAddView(showAddList: $showAddView)
             }
         }
-        
     }
     func delete(at offsets: IndexSet) {
         
@@ -56,6 +60,28 @@ struct ListView: View {
         
     }
 }
+
+struct SectionHeader: View {
+    
+    let sectionColor : Color
+    
+    var body: some View {
+        ZStack {
+            HStack {
+                Text("\(Date().month) / \(Date().day)  \(Date().dayName)")
+                    .padding(10)
+                    .font(.largeTitle)
+                Spacer()
+            }
+            
+        }
+        .frame(width: UIScreen.main.bounds.width)
+        .background(sectionColor)
+        
+            
+    }
+}
+
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
