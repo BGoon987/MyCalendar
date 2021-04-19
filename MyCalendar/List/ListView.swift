@@ -11,17 +11,24 @@ struct ListView: View {
     
     @State var showAddView = false
     
+    @State var selectedMonth = ContentView().selectedMonth
+    @State var selectedDay = ContentView().selectedDay
+    
     var body: some View {
         ZStack {
-            
                 List {
-                    Section(header: SectionHeader(sectionColor: Color.orange)) {
+                    Section(header: SectionHeader(
+                                sectionColor: Color.orange,
+                                selectedMonth: self.$selectedMonth,
+                                selectedDay: self.$selectedDay)) {
                         ForEach(listDataStore, id: \.id) { item in
                             if item.isClear == false {
                                 HStack {
                                     Text(item.time)
                                     Text(item.title)
                                     Spacer()
+                                    Text(self.selectedMonth)
+                                    Text(self.selectedDay)
                                     Image(systemName : item.isClear ? "circle.fill" : "circle")
                                 }
                             }
@@ -65,10 +72,13 @@ struct SectionHeader: View {
     
     let sectionColor : Color
     
+    @Binding var selectedMonth: String
+    @Binding var selectedDay: String
+    
     var body: some View {
         ZStack {
             HStack {
-                Text("\(Date().month) / \(Date().day)  \(Date().dayName)")
+                Text("\(selectedMonth) / \(selectedDay) \(Date().dayName)")
                     .padding(10)
                     .font(.largeTitle)
                 Spacer()
