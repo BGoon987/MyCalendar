@@ -40,3 +40,7 @@ Making Calendar without using library
 - Complete: Making AddListView <br>
   (User can input Title and Time Data : Tap "Add" Button in ListView -> input title / time -> tap button of bottom -> append Data and return ListView)<br>
 - assignment: modify some Layout
+
+2021/04/19
+- Ongoing: Modify ListView's Section header<br>
+  (The Month/Day selected in ContentView is displayed in ListView's Section)<br>
