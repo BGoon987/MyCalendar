@@ -15,24 +15,30 @@ struct ContentView: View {
         calendar.dateInterval(of: .year, for: Date())!
     }
     
-    @State private var haveIndex = false
-    
     @State var selectedMonth: String = ""
     @State var selectedDay: String = ""
+    @State var selectedDayOfWeekday: String = ""
     
     
     var body: some View {
         NavigationView {
             CalendarView(interval: year) { date in
                 NavigationLink(
-                    destination: ListView().onAppear(perform: {
-                        
-                        self.selectedMonth = String(self.calendar.component(.month, from: date))
-                        self.selectedDay = String(self.calendar.component(.day, from: date))
-                        
-                        print(selectedMonth)
-                        print(selectedDay)
-                    }),
+                    destination: ListView(selectedMonth: $selectedMonth,
+                                          selectedDay: $selectedDay,
+                                          selectedDayOfWeekday:$selectedDayOfWeekday)
+                        .onAppear(perform: {
+                            
+                            self.selectedMonth = String(self.calendar.component(.month, from: date))
+                            self.selectedDay = String(self.calendar.component(.day, from: date))
+                            self.selectedDayOfWeekday = String(self.calendar.component(.weekday, from: date))
+                            
+                            // Test Print
+                            print(selectedMonth)
+                            print(selectedDay)
+                            print(selectedDayOfWeekday)
+                            
+                        }),
                     label: {
                         Text("30")
                             .hidden()
@@ -42,15 +48,11 @@ struct ContentView: View {
                             .padding(.vertical, 4)
                             .overlay(
                                 Text(String(self.calendar.component(.day, from: date)))
-                            )
-                    
+                            )               
                     })
                     .navigationBarHidden(true)
             }
-                
-            
         }
-        
     }
 }
 

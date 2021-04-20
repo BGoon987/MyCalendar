@@ -84,7 +84,8 @@ struct ListAddView: View {
                       title: title,
                       isClear: false,
                       month: date.month,
-                      day: date.day
+                      day: date.day,
+                      dayOfWeekday: date.dayofWeekday
             ))
         
     }
@@ -131,8 +132,8 @@ struct PickerView: View {
 }
 
 
-struct ListAddView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListAddView(showAddList: ListView().$showAddView)
-    }
-}
+//struct ListAddView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListAddView(showAddList: ListView(selectedMonth: ContentView().$selectedMonth, selectedDay: ContentView().$selectedDay, selectedDayOfWeekday: ContentView().$selectedDayOfWeekday))
+//    }
+//}

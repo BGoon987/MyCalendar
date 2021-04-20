@@ -66,7 +66,7 @@ extension Date {
         nameFormatter.dateFormat = "MMMM"
         return nameFormatter.string(from: self)
     }
-    public var dayName: String {
+    public var dayofWeekday: String {
         let nameFormatter = DateFormatter()
         nameFormatter.dateFormat = "eee"
         return nameFormatter.string(from: self)

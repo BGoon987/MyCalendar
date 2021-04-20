@@ -79,7 +79,7 @@ struct CalendarView<DateView>: View where DateView: View {
                     
                     
                 }
-                .padding(.leading, leadPadding - addPadding)
+                .padding(.leading, (leadPadding - addPadding) - ((leadPadding + monthViewSize.width) * (CGFloat(Date().month) - 1)))
                 .animation(.default)
                 
                 
