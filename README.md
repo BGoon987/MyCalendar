@@ -44,3 +44,9 @@ Making Calendar without using library
 2021/04/19
 - Ongoing: Modify ListView's Section header<br>
   (The Month/Day selected in ContentView is displayed in ListView's Section)<br>
+  
+ 2021/04/20
+ - Ongoing: Modify ListView's Section Layout<br>
+  (Only the list corresponding to the day of the week selected by the user in CalendarView is displayed)<br>
+ - assignment: When saving a new value in ListAddView, the month/day selected in CalendarView can be saved<br>
+  (Now, if User saves the value, it is saved as the date at the present time)
