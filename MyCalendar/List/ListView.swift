@@ -57,7 +57,9 @@ struct ListView: View {
             }
             
             if showAddView {
-                ListAddView(showAddList: $showAddView)
+                ListAddView(showAddList: $showAddView,
+                            selectedMonth: Int(self.$selectedMonth),
+                            selectedDay: Int(self.$selectedDay))
             }
         }
     }

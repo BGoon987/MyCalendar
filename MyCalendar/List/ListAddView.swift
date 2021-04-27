@@ -16,6 +16,9 @@ struct ListAddView: View {
     
     @Binding var showAddList : Bool
     
+    @Binding var selectedMonth : Int
+    @Binding var selectedDay: Int
+    
     var addViewWidth = UIScreen.main.bounds.width
     var addViewHeight = UIScreen.main.bounds.height
     
@@ -83,8 +86,8 @@ struct ListAddView: View {
             ListModel(time:String("\(date.hour):\(date.minute)"),
                       title: title,
                       isClear: false,
-                      month: date.month,
-                      day: date.day,
+                      month: selectedMonth,
+                      day: selectedDay,
                       dayOfWeekday: date.dayofWeekday
             ))
         
