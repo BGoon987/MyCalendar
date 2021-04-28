@@ -50,3 +50,7 @@ Making Calendar by myself
   (Only the list corresponding to the day of the week selected by the user in CalendarView is displayed)<br>
  - assignment: When saving a new value in ListAddView, the month/day selected in CalendarView can be saved<br>
   (Now, if User saves the value, it is saved as the date at the present time)
+  
+  2021/04/28
+ - Complete: When saving a new value in ListAddView, the month/day selected in CalendarView can be saved<br>
+ - assignment: The problem that changing or deletion of the List using EditButton() is not immediately refelected on the screen
