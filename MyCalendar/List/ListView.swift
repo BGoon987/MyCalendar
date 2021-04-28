@@ -24,16 +24,17 @@ struct ListView: View {
                             selectedDay: self.$selectedDay,
                             selectedDayOfWeekday: self.$selectedDayOfWeekday)) {
                     ForEach(listDataStore, id: \.id) { item in
-                        if String(item.day) == self.selectedDay && String(item.month) == self.selectedMonth {
-                                HStack {
-                                    Text(item.time)
-                                    Text(item.title)
-                                    Spacer()
-                                    Image(systemName : item.isClear ? "circle.fill" : "circle")
-                                        .onTapGesture {
-                                            // Check and Clear list
-                                        }
-                                }
+                        if String(item.day) == self.selectedDay &&
+                            String(item.month) == self.selectedMonth {
+                            HStack {
+                                Text(item.time)
+                                Text(item.title)
+                                Spacer()
+                                Image(systemName : item.isClear ? "circle.fill" : "circle")
+                                    .onTapGesture {
+                                        // Check and Clear list
+                                    }
+                            }
                         }
                     }
                     .onDelete(perform: delete)
@@ -42,7 +43,7 @@ struct ListView: View {
                     }
                 }
                 .listStyle(GroupedListStyle())
-
+                
             }
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
@@ -55,11 +56,10 @@ struct ListView: View {
                     EditButton()
                 }
             }
-            
             if showAddView {
                 ListAddView(showAddList: $showAddView,
-                            selectedMonth: Int(self.$selectedMonth),
-                            selectedDay: Int(self.$selectedDay))
+                            selectedMonth: Int(selectedMonth)!,
+                            selectedDay: Int(selectedDay)!)
             }
         }
     }

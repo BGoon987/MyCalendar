@@ -16,8 +16,8 @@ struct ListAddView: View {
     
     @Binding var showAddList : Bool
     
-    @Binding var selectedMonth : Int
-    @Binding var selectedDay: Int
+    @State var selectedMonth : Int
+    @State var selectedDay: Int
     
     var addViewWidth = UIScreen.main.bounds.width
     var addViewHeight = UIScreen.main.bounds.height
@@ -27,12 +27,19 @@ struct ListAddView: View {
         ZStack {
             Color.black.opacity(0.5)
             VStack {
+                Text("Selected Date")
+                    .font(.headline)
+                Text("\(selectedMonth) / \(selectedDay)")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 10)
+                
                 Text("Title")
                     .font(.headline)
                 TextField("Enter title", text: $title)
                     .disableAutocorrection(true)
                     .frame(width: addViewWidth * 0.7)
-                    .padding()
+                    .padding(.bottom, 10)
                 Text("Time")
                     .font(.headline)
                 
@@ -48,15 +55,6 @@ struct ListAddView: View {
                 
                 HStack {
                     Button(action: {
-                        showAddList.toggle()
-                    }, label: {
-                        Image(systemName: "multiply.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.black)
-                    })
-                    Button(action: {
-                        
                         saveList()
                         showAddList.toggle()
                         print(listDataStore.count)
@@ -66,6 +64,15 @@ struct ListAddView: View {
                             .frame(width: 50, height: 50)
                             .foregroundColor(.black)
                     })
+                    Button(action: {
+                        showAddList.toggle()
+                    }, label: {
+                        Image(systemName: "multiply.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.black)
+                    })
+                    
                     
                 }
                 
