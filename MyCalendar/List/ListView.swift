@@ -30,7 +30,7 @@ struct ListView: View {
                                 Text(item.time)
                                 Text(item.title)
                                 Spacer()
-                                Image(systemName : item.isClear ? "circle.fill" : "circle")
+                                Image(systemName : "circle")
                                     .onTapGesture {
                                         // Check and Clear list
                                     }

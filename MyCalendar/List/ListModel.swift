@@ -13,15 +13,13 @@ struct ListModel: Identifiable {
     
     var time: String
     var title: String
-    var isClear : Bool
     var month: Int
     var day: Int
     var dayOfWeekday: String
     
-    init(time: String, title: String, isClear: Bool, month: Int, day: Int, dayOfWeekday: String) {
+    init(time: String, title: String, month: Int, day: Int, dayOfWeekday: String) {
         self.time = time
         self.title = title
-        self.isClear = isClear
         self.month = month
         self.day = day
         self.dayOfWeekday = dayOfWeekday

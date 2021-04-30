@@ -92,7 +92,6 @@ struct ListAddView: View {
         listDataStore.append(
             ListModel(time:String("\(date.hour):\(date.minute)"),
                       title: title,
-                      isClear: false,
                       month: selectedMonth,
                       day: selectedDay,
                       dayOfWeekday: date.dayofWeekday
