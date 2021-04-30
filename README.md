@@ -56,6 +56,6 @@ Making Calendar by myself
  - assignment: The problem that changing or deletion of the List using EditButton() is not immediately refelected on the screen
  
  2021/04/30
- - Delete ListModel().isClear 
+ - Delete ListModel().isClear <br>
   (Unable isClear.toggle() in ForEach -> Changing the color / going down to the bottom of the ListView / changing it in a way that makes it invisible)
  
