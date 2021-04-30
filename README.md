@@ -57,5 +57,5 @@ Making Calendar by myself
  
  2021/04/30
  - Delete ListModel().isClear <br>
-  (Unable isClear.toggle() in ForEach -> Changing the color / going down to the bottom of the ListView / changing it in a way that makes it invisible)
+  (Unable isClear.toggle() in ForEach -> Changing the color / going down to the bottom of the ListView / <br> changing it in a way that makes it invisible)
  
