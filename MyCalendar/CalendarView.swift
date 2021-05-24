@@ -39,17 +39,31 @@ struct CalendarView<DateView>: View where DateView: View {
     }
     
     @State var addPadding: CGFloat = 0
+    @State var currentDate = Date()
     
     
     
     var body: some View {
         VStack {
             HStack {
-                Button(action: {
-                    self.addPadding -= leadPadding + monthViewSize.width
-                }, label: {
-                    Image(systemName: "arrow.backward")
-                })
+                VStack {
+                    Button(action: {
+                        self.addPadding -= leadPadding + monthViewSize.width
+                    }, label: {
+                        Image(systemName: "arrow.backward")
+                    })
+                    Button(action: {
+                        self.currentDate = currentDate.added(year: -1)
+                    }, label: {
+                        Image(systemName: "arrow.backward.circle.fill")
+                            
+                            
+                            
+                    })
+                }
+                Spacer()
+                Text("\(Date().year)")
+                
 //                Spacer()
 //                Button(action: {
 //                    if leadPadding == trailPadding {
@@ -62,11 +76,19 @@ struct CalendarView<DateView>: View where DateView: View {
 //                    Text("Test")
 //                })
                 Spacer()
-                Button(action: {
-                    self.addPadding += leadPadding + monthViewSize.width
-                }, label: {
-                    Image(systemName: "arrow.right")
-                })
+                VStack {
+                    Button(action: {
+                        self.addPadding += leadPadding + monthViewSize.width
+                    }, label: {
+                        Image(systemName: "arrow.right")
+                    })
+                    Button(action: {
+                        self.currentDate = currentDate.added(year: +1)
+                    }, label: {
+                        Image(systemName: "arrow.right.circle.fill")
+                    })
+                }
+                
             }
             .frame(width: self.monthViewSize.width * 0.9)
             GeometryReader { index in
