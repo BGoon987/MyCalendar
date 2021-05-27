@@ -59,3 +59,6 @@ Making Calendar by myself
  - Delete ListModel().isClear <br>
   (Unable isClear.toggle() in ForEach -> Changing the color / going down to the bottom of the ListView / <br> changing it in a way that makes it invisible)
  
+ 2021/05/27
+ - Complete: Shifting Year and Month <br>
+(Data cannot be modified with existing extensions, so it is replaced with another function)
