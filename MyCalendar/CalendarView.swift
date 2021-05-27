@@ -10,14 +10,16 @@ import SwiftUI
 struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
     
+    @Binding var currentDate : Date
     let interval: DateInterval
     let content: (Date) -> DateView
     
     
     
-    init(interval: DateInterval, @ViewBuilder content: @escaping (Date) -> DateView) {
+    init(interval: DateInterval, currentDate: Binding<Date>, @ViewBuilder content: @escaping (Date) -> DateView) {
         self.interval = interval
         self.content = content
+        self._currentDate = currentDate
     }
     
     private var months: [Date] {
@@ -39,7 +41,6 @@ struct CalendarView<DateView>: View where DateView: View {
     }
     
     @State var addPadding: CGFloat = 0
-    @State var currentDate = Date()
     
     
     
@@ -48,45 +49,54 @@ struct CalendarView<DateView>: View where DateView: View {
             HStack {
                 VStack {
                     Button(action: {
-                        self.addPadding -= leadPadding + monthViewSize.width
-                    }, label: {
-                        Image(systemName: "arrow.backward")
-                    })
-                    Button(action: {
                         self.currentDate = currentDate.added(year: -1)
                     }, label: {
-                        Image(systemName: "arrow.backward.circle.fill")
-                            
-                            
-                            
+                        Text("\(currentDate.year - 1)")
                     })
-                }
-                Spacer()
-                Text("\(Date().year)")
-                
-//                Spacer()
-//                Button(action: {
-//                    if leadPadding == trailPadding {
-//                        print("lead = trail")
-//                    } else {
-//                        print("lead /= trail")
-//                    }
-//
-//                }, label: {
-//                    Text("Test")
-//                })
-                Spacer()
-                VStack {
+                    .padding(.bottom, 10)
+                    
                     Button(action: {
-                        self.addPadding += leadPadding + monthViewSize.width
+                        self.addPadding -= leadPadding + monthViewSize.width
                     }, label: {
-                        Image(systemName: "arrow.right")
+                        Text("Prev Month")
                     })
+                    
+                    
+                    
+                }
+                
+                
+                
+                //                Spacer()
+                //                Button(action: {
+                //                    if leadPadding == trailPadding {
+                //                        print("lead = trail")
+                //                    } else {
+                //                        print("lead /= trail")
+                //                    }
+                //
+                //                }, label: {
+                //                    Text("Test")
+                //                })
+                
+                Spacer()
+                
+                VStack {
                     Button(action: {
                         self.currentDate = currentDate.added(year: +1)
                     }, label: {
-                        Image(systemName: "arrow.right.circle.fill")
+                        Text("\(currentDate.year + 1)")
                     })
+                    .padding(.bottom, 10)
+                    
+                    Button(action: {
+                        self.addPadding += leadPadding + monthViewSize.width
+                    }, label: {
+                        Text("Next Month")
+                    })
+                    
+                    
+                    
                 }
                 
             }
@@ -95,7 +105,7 @@ struct CalendarView<DateView>: View where DateView: View {
                 HStack(spacing: leadPadding) {
                     ForEach(months, id: \.self) { month in
                         MonthView(month: month, content: self.content)
-                            
+                        
                     }
                     .frame(width: monthViewSize.width, height: monthViewSize.height, alignment: .top)
                     

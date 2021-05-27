@@ -12,17 +12,18 @@ struct ContentView: View {
     
     
     private var year: DateInterval {
-        calendar.dateInterval(of: .year, for: Date())!
+        calendar.dateInterval(of: .year, for: currentDate)!
     }
     
     @State var selectedMonth: String = ""
     @State var selectedDay: String = ""
     @State var selectedDayOfWeekday: String = ""
+    @State var currentDate = Date()
     
     
     var body: some View {
         NavigationView {
-            CalendarView(interval: year) { date in
+            CalendarView(interval: year, currentDate: $currentDate) { date in
                 NavigationLink(
                     destination: ListView(selectedMonth: $selectedMonth,
                                           selectedDay: $selectedDay,
