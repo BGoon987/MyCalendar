@@ -56,7 +56,16 @@ struct CalendarView<DateView>: View where DateView: View {
                     .padding(.bottom, 10)
                     
                     Button(action: {
-                        self.addPadding -= leadPadding + monthViewSize.width
+                        if self.currentDate.month == 1 {
+                            self.currentDate = currentDate.added(year: -1)
+                            self.currentDate = currentDate.fixed(month: 12)
+                            self.addPadding += (leadPadding + monthViewSize.width) * 11
+                            
+                        } else {
+                            self.currentDate = currentDate.added(month: -1)
+                            self.addPadding -= leadPadding + monthViewSize.width
+                        }
+                        
                     }, label: {
                         Text("Prev Month")
                     })
@@ -90,7 +99,15 @@ struct CalendarView<DateView>: View where DateView: View {
                     .padding(.bottom, 10)
                     
                     Button(action: {
-                        self.addPadding += leadPadding + monthViewSize.width
+                        if self.currentDate.month == 12 {
+                            self.currentDate = currentDate.added(year: +1)
+                            self.currentDate = currentDate.fixed(month: 1)
+                            self.addPadding -= (leadPadding + monthViewSize.width) * 11
+                        } else {
+                            self.currentDate = currentDate.added(month: +1)
+                            self.addPadding += leadPadding + monthViewSize.width
+                        }
+                        
                     }, label: {
                         Text("Next Month")
                     })

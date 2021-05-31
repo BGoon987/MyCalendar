@@ -35,9 +35,8 @@ struct ContentView: View {
                             self.selectedDayOfWeekday = String(self.calendar.component(.weekday, from: date))
                             
                             // Test Print
-                            print(selectedMonth)
-                            print(selectedDay)
-                            print(selectedDayOfWeekday)
+                            
+                            print("\(currentDate.year)" + "/" + selectedMonth + "/" + selectedDay)
                             
                         }),
                     label: {
