@@ -62,3 +62,6 @@ Making Calendar by myself
  2021/05/27
  - Complete: Shifting Year and Month <br>
 (Data cannot be modified with existing extensions, so it is replaced with another function)
+
+2021/06/61
+- Complete: Fix the Issue that CalendarView() is not visible when moving the month with the year changing
