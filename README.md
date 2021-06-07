@@ -63,5 +63,9 @@ Making Calendar by myself
  - Complete: Shifting Year and Month <br>
 (Data cannot be modified with existing extensions, so it is replaced with another function)
 
-2021/06/61
+2021/06/01
 - Complete: Fix the Issue that CalendarView() is not visible when moving the month with the year changing
+
+2021/06/08
+- Complete: Add selectedYear in ListModel() / Allows Additons to reflect the selected year<br>
+(Data is saved based on the year that was selected when the List()'s screen appeared.)
