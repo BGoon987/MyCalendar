@@ -15,6 +15,7 @@ struct ContentView: View {
         calendar.dateInterval(of: .year, for: currentDate)!
     }
     
+    @State var selectedYear: String = ""
     @State var selectedMonth: String = ""
     @State var selectedDay: String = ""
     @State var selectedDayOfWeekday: String = ""
@@ -25,11 +26,12 @@ struct ContentView: View {
         NavigationView {
             CalendarView(interval: year, currentDate: $currentDate) { date in
                 NavigationLink(
-                    destination: ListView(selectedMonth: $selectedMonth,
-                                          selectedDay: $selectedDay,
-                                          selectedDayOfWeekday:$selectedDayOfWeekday)
+                    destination: ListView(selectedYear: $selectedYear, selectedMonth: $selectedMonth,
+                                          selectedDay: $selectedDay, selectedDayOfWeekday:$selectedDayOfWeekday,
+                                          currentDate: $currentDate)
                         .onAppear(perform: {
                             
+                            self.selectedYear = String(self.calendar.component(.year, from: date))
                             self.selectedMonth = String(self.calendar.component(.month, from: date))
                             self.selectedDay = String(self.calendar.component(.day, from: date))
                             self.selectedDayOfWeekday = String(self.calendar.component(.weekday, from: date))

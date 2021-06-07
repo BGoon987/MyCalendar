@@ -11,9 +11,11 @@ struct ListView: View {
     
     @State var showAddView = false
     
+    @Binding var selectedYear: String
     @Binding var selectedMonth: String
     @Binding var selectedDay: String
     @Binding var selectedDayOfWeekday: String
+    @Binding var currentDate: Date
     
     var body: some View {
         ZStack {
@@ -24,7 +26,8 @@ struct ListView: View {
                             selectedDay: self.$selectedDay,
                             selectedDayOfWeekday: self.$selectedDayOfWeekday)) {
                     ForEach(listDataStore, id: \.id) { item in
-                        if String(item.day) == self.selectedDay &&
+                        if String(item.year) == self.selectedYear &&
+                            String(item.day) == self.selectedDay &&
                             String(item.month) == self.selectedMonth {
                             HStack {
                                 Text(item.time)
@@ -58,6 +61,8 @@ struct ListView: View {
             }
             if showAddView {
                 ListAddView(showAddList: $showAddView,
+                            currentDate: $currentDate,
+                            selectedYear: Int(selectedYear)!,
                             selectedMonth: Int(selectedMonth)!,
                             selectedDay: Int(selectedDay)!)
             }
@@ -117,6 +122,10 @@ struct SectionHeader: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(selectedMonth: ContentView().$selectedMonth, selectedDay: ContentView().$selectedDay, selectedDayOfWeekday: ContentView().$selectedDayOfWeekday)
+        ListView(selectedYear: ContentView().$selectedYear,
+                 selectedMonth: ContentView().$selectedMonth,
+                 selectedDay: ContentView().$selectedDay,
+                 selectedDayOfWeekday: ContentView().$selectedDayOfWeekday,
+                 currentDate: ContentView().$currentDate)
     }
 }

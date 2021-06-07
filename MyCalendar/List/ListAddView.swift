@@ -10,12 +10,12 @@ import SwiftUI
 struct ListAddView: View {
     
     @State var title: String = ""
-    @State var date: Date = Date()
-    
     @State var showPicker = false
     
-    @Binding var showAddList : Bool
+    @Binding var showAddList: Bool
+    @Binding var currentDate: Date
     
+    @State var selectedYear: Int
     @State var selectedMonth : Int
     @State var selectedDay: Int
     
@@ -47,7 +47,7 @@ struct ListAddView: View {
                     showPicker.toggle()
                     
                 }, label: {
-                    Text("\(date.hour) : \(date.minute)")
+                    Text("\(currentDate.hour) : \(currentDate.minute)")
                         .font(.largeTitle)
                         .foregroundColor(Color.white)
                         
@@ -82,7 +82,7 @@ struct ListAddView: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             
             if showPicker {
-                PickerView(pickDate: $date, showPicker: $showPicker)
+                PickerView(pickDate: $currentDate, showPicker: $showPicker)
                     .animation(.easeInOut(duration: 10.0))
                 
             }
@@ -90,13 +90,13 @@ struct ListAddView: View {
     }
     func saveList() {
         listDataStore.append(
-            ListModel(time:String("\(date.hour):\(date.minute)"),
+            ListModel(time:String("\(currentDate.hour):\(currentDate.minute)"),
                       title: title,
+                      year: selectedYear,
                       month: selectedMonth,
                       day: selectedDay,
-                      dayOfWeekday: date.dayofWeekday
+                      dayOfWeekday: currentDate.dayofWeekday
             ))
-        
     }
 }
 
@@ -109,18 +109,15 @@ struct PickerView: View {
     
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
-        let startComponents = DateComponents(year: 2021, month: 1, day: 1)
-        let endComponents = DateComponents(year: 2021, month: 12, day: 31, hour: 23, minute: 59, second: 59)
+        let startComponents = DateComponents(year: nil, month: 1, day: 1)
+        let endComponents = DateComponents(year: nil, month: 12, day: 31, hour: 23, minute: 59, second: 59)
         return calendar.date(from: startComponents)!...calendar.date(from: endComponents)!
         
     }()
     
     var body: some View {
         VStack {
-            DatePicker("", selection: $pickDate,
-                       in: dateRange,
-                       displayedComponents: [.hourAndMinute])
-                
+            DatePicker("", selection: $pickDate, in: dateRange, displayedComponents: [.hourAndMinute])
                 .datePickerStyle(WheelDatePickerStyle())
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
