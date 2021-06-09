@@ -69,3 +69,6 @@ Making Calendar by myself
 2021/06/08
 - Complete: Add selectedYear in ListModel() / Allows Additons to reflect the selected year<br>
 (Data is saved based on the year that was selected when the List()'s screen appeared.)
+
+2021/06/09
+- Complete: Add "Today" Button
