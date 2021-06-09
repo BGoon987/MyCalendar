@@ -1,9 +1,4 @@
-//
-//  ListDataStore.swift
-//  MyCalendar
-//
-//  Created by 裴良洙 on 2021/04/14.
-//
+
 
 import Foundation
 

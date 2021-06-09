@@ -1,9 +1,3 @@
-//
-//  ListAddView.swift
-//  MyCalendar
-//
-//  Created by 裴良洙 on 2021/04/15.
-//
 
 import SwiftUI
 

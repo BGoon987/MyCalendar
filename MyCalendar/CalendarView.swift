@@ -1,9 +1,3 @@
-//
-//  CalendarView.swift
-//  MyCalendar
-//
-//  Created by 裴良洙 on 2021/03/31.
-//
 
 import SwiftUI
 
@@ -70,10 +64,14 @@ struct CalendarView<DateView>: View where DateView: View {
                         Text("Prev Month")
                     })
                     
-                    
-                    
                 }
-                
+                Spacer()
+                Button(action: {
+                    self.currentDate = currentDate.fixed(year: Date().year)
+                    self.addPadding = 0
+                }, label: {
+                    Text("Today")
+                })
                 
                 
                 //                Spacer()

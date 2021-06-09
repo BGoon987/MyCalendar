@@ -1,9 +1,4 @@
-//
-//  DateFormatter.swift
-//  MyCalendar
-//
-//  Created by 裴良洙 on 2021/03/31.
-//
+
 
 import Foundation
 
